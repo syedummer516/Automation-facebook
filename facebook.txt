@@ -1,0 +1,70 @@
+package practice;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import java.util.*;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Facebook {
+	
+	public static void main (String [] args) throws Exception{
+
+		System.setProperty("webdriver.chrome.driver","./software/Chromedriver1.exe");
+		
+		Map<String, Object> prefs = new HashMap<String, Object>();
+		prefs.put("profile.default_content_setting_values.notifications", 2);
+		prefs.put("credentials_enable_service", false);
+		prefs.put("profile.password_manager_enabled", false);
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", prefs);
+		options.addArguments("start-maximized");
+		options.addArguments("disable-infobars");
+		options.addArguments("--disable-extensions");
+		options.addArguments("--disable-notifications");
+		WebDriver driver = new ChromeDriver(options);
+		
+		driver.get("https://www.facebook.com/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.findElement(By.id("email")).sendKeys("yourId");
+		Thread.sleep(5000);
+		driver.findElement(By.id("pass")).sendKeys("your password");
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("(//button[@type='submit'])[1]")).click();
+		
+		String NotificationMessages=driver.findElement(By.xpath("(//span[@class='bp9cbjyn ljqsnud1 pq6dq46d datstx6m taijpn5t jb3vyjys jxrgncrl qt6c0cv9 qnrpqo6b k4urcfbm'])[4]")).getText().toString();
+		System.out.println("No of messages in Notification :"+NotificationMessages);
+		Thread.sleep(5000);
+		
+		String Groups=driver.findElement(By.xpath("(//span[@class='bp9cbjyn ljqsnud1 pq6dq46d datstx6m taijpn5t jb3vyjys jxrgncrl qt6c0cv9 qnrpqo6b k4urcfbm'])[2]")).getText().toString();
+		System.out.println("No of messages in Groups:"+Groups);
+		Thread.sleep(5000);
+		
+		String Watch=driver.findElement(By.xpath("(//span[@class='bp9cbjyn ljqsnud1 pq6dq46d datstx6m taijpn5t jb3vyjys jxrgncrl qt6c0cv9 qnrpqo6b k4urcfbm'])[1]")).getText().toString();
+		System.out.println("No of messages in Watch:"+Watch);
+		Thread.sleep(5000);
+		
+		String Gaming=driver.findElement(By.xpath("(//span[@class='bp9cbjyn ljqsnud1 pq6dq46d datstx6m taijpn5t jb3vyjys jxrgncrl qt6c0cv9 qnrpqo6b k4urcfbm'])[3]")).getText().toString();
+		System.out.println("No of messages in Gaming:"+Gaming);
+		Thread.sleep(5000);
+		
+		//This one to collect the data from paticular id name.
+		driver.findElement(By.xpath("(//input[@type='search'])[1]")).sendKeys("profile name");
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("(//div[@class='j83agx80 bp9cbjyn oo9gr5id buofh1pr ni8dbmo4 stjgntxs cxgpxx05 dflh9lhu sj5x9vvc scb9dxdr'])[1]")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.linkText("iSHQ ALLAH Faqar ALLAH")).click();
+		
+		
+		String copiedText = driver.findElement(By.xpath("(//span[@class='d2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j keod5gw0 nxhoafnm aigsh9s9 d3f4x2em fe6kdd0r mau55g9w c8b282yb iv3no6db jq4qci2q a3bd9o3v knj5qynh oo9gr5id hzawbc8m'])[20]")).getText();
+		Thread.sleep(5000);
+		System.out.println("MSG:"+copiedText);
+		
+		driver.close();
