@@ -60,7 +60,7 @@ public class Facebook {
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("(//div[@class='j83agx80 bp9cbjyn oo9gr5id buofh1pr ni8dbmo4 stjgntxs cxgpxx05 dflh9lhu sj5x9vvc scb9dxdr'])[1]")).click();
 		Thread.sleep(5000);
-		driver.findElement(By.linkText("iSHQ ALLAH Faqar ALLAH")).click();
+		driver.findElement(By.linkText("profile Name")).click();
 		
 		
 		String copiedText = driver.findElement(By.xpath("(//span[@class='d2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j keod5gw0 nxhoafnm aigsh9s9 d3f4x2em fe6kdd0r mau55g9w c8b282yb iv3no6db jq4qci2q a3bd9o3v knj5qynh oo9gr5id hzawbc8m'])[20]")).getText();
